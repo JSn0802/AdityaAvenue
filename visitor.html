@@ -45,25 +45,41 @@
     <!-- End of Navbar  -->
     <div class="container">
         <h2>Visitor Registration</h2>
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Name:</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your Name">
-        </div>
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Flat Number:</label>
-            <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Enter the Flat Number you are visiting">
-        </div>
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Contact Number:</label>
-            <input type="number" class="form-control" id="exampleFormControlInput3"
-                placeholder="Enter your Contact Number">
-        </div>
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Purpose of visiting:</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Purpose of the visit">
-        </div>
-        <input class="btn btn-primary" type="submit" value="Submit">
+        <form method="POST" name="google-sheet">    
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Name:</label>
+                <input type="text" class="form-control" id="Name" name="Name" placeholder="Enter your Name">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Flat Number:</label>
+                <input type="text" class="form-control" id="Flatnumber" name="Flatnumber"
+                    placeholder="Enter the Flat Number you are visiting">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Contact Number:</label>
+                <input type="number" class="form-control" id="Contact" name="Contact"
+                    placeholder="Enter your Contact Number">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Purpose of visiting:</label>
+                <input type="text" class="form-control" id="Purpose" name="Purpose"
+                    placeholder="Purpose of the visit">
+            </div>
+            <input class="btn btn-primary" type="Submit" name="submit" value="Submit">
+        </form>
     </div>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbym1Foe11Kk4hgS_Ci-JNzVWzI7Zt6dW2XQKi684D-iNXVD9_4QWzlncyxOJNO-dajFCQ/exec'
+        const form = document.forms['google-sheet']
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
