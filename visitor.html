@@ -66,7 +66,7 @@
                 <input type="text" class="form-control" id="Purpose" name="Purpose"
                     placeholder="Purpose of the visit">
             </div>
-            <input class="btn btn-primary" type="Submit" name="submit" value="Submit">
+            <button class="btn btn-primary" type="submit" name="submit" value="Submit">Submit</button>
         </form>
     </div>
     <script>
@@ -74,11 +74,16 @@
         const form = document.forms['google-sheet']
       
         form.addEventListener('submit', e => {
-          e.preventDefault()
+         e.preventDefault()
           fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
-            .catch(error => console.error('Error!', error.message))
+            .then(response =>{ alert("Thanks for Contacting us..! We Will Contact You Soon...")
+            let inputs = document.querySelectorAll('input');
+            inputs.forEach(input =>  input.value = '');
         })
+            .catch(error => console.error('Error!', error.message))
+            
+        }
+        )
       </script>
     <!-- Optional JavaScript; choose one of the two! -->
 
